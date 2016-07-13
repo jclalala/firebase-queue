@@ -179,8 +179,8 @@ QueueWorker.prototype._resolve = function(taskNumber) {
           return task;
         }
         var id = self.processId + ':' + self.taskNumber;
-        if (task._state === self.inProgressState &&
-            task._owner === id) {
+        if (task._state_changed || (task._state === self.inProgressState &&
+            task._owner === id)) {
           var outputTask = _.clone(newTask);
           if (!_.isPlainObject(outputTask)) {
             outputTask = {};
